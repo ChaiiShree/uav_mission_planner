@@ -46,8 +46,8 @@ A complete real-time drone telemetry and mission planning system with ESP32 flig
 ### 1. Clone Repository
 
 ```shell
-git clone https://github.com/yourusername/uav-mission-control.git
-cd uav-mission-control
+git clone https://github.com/yourusername/uav_mission_planner.git
+cd uav_mission_planner
 ```
 
 ### 2. Setup Backend Server
@@ -116,28 +116,6 @@ const char* TELEMETRY_SERVER_URL = "http://192.168.1.100:8080/telemetry";
 ```
 
 4. Upload to ESP32 and monitor Serial output
-
-## 📁 Project Structure
-
-uav-mission-control/
-├── 📁 dashboard/ # React frontend
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── Map/ # Drone map components
-│ │ │ ├── Telemetry/ # Data display components
-│ │ │ └── Layout/ # Dashboard layout
-│ │ ├── hooks/ # Custom React hooks
-│ │ ├── types/ # TypeScript definitions
-│ │ └── utils/ # Map utilities
-│ ├── package.json
-│ └── vite.config.ts
-├── 📁 server/ # Node.js backend
-│ ├── server.js # Express + WebSocket server
-│ └── package.json
-├── 📁 esp32/ # Flight controller code
-│ └── flight.ino # Complete FC with telemetry
-├── README.md
-└── .gitignore
 
 ## 🎯 Usage
 
