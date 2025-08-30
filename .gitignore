@@ -1,0 +1,28 @@
+# Node.js backend
+/server/node_modules/
+/server/.env
+/server/*.log
+
+# React frontend
+/dashboard/node_modules/
+/dashboard/dist/
+/dashboard/.env
+/dashboard/.DS_Store
+
+# Arduino/ESP32
+/esp32/*.bin
+/esp32/*.elf
+/esp32/*.hex
+/esp32/.pio/
+*.ino.*
+
+# OS/IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# Misc
+npm-debug.log*
+yarn-debug.log*
+yarn
