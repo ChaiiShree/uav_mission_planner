@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { DroneMap } from '../Map/DroneMap';
 import { TelemetryPanel } from '../Telemetry/TelemetryPanel';
+import { SerialMonitor } from '../SerialMonitor/SerialMonitor';
 import { useTelemetry } from '../../hooks/useTelemetry';
-import { Menu, X, MapPin, Target, Shield, Radio } from 'lucide-react';
+import { Menu, X, MapPin, Target, Shield, Radio, Terminal, Code } from 'lucide-react';
 
 export const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [serialMonitorOpen, setSerialMonitorOpen] = useState(false);
+  
   const {
     telemetry,
     waypoints,
@@ -60,7 +63,7 @@ export const Dashboard = () => {
               }`} />
               <Radio size={14} className={isConnected ? 'text-green-400' : 'text-red-400'} />
               <span className="font-mono text-xs">
-                {isConnected ? 'ONLINE' : 'OFFLINE'}
+                {isConnected ? 'TELEMETRY' : 'NO SIGNAL'}
               </span>
             </div>
             
@@ -79,11 +82,23 @@ export const Dashboard = () => {
                 {droneStatus.armed ? 'ARMED' : 'SAFE'}
               </span>
             </div>
+
+            {/* Serial Monitor Toggle */}
+            <button
+              onClick={() => setSerialMonitorOpen(!serialMonitorOpen)}
+              className={`tactical-card px-3 py-2 rounded flex items-center gap-2 transition-colors ${
+                serialMonitorOpen ? 'bg-green-700 text-green-200' : 'hover:bg-gray-600'
+              }`}
+              title="Toggle Serial Monitor"
+            >
+              <Terminal size={14} />
+              <span className="font-mono text-xs hidden md:inline">CONSOLE</span>
+            </button>
           </div>
         </div>
 
         {/* Map Display */}
-        <div className="flex-1 p-4">
+        <div className={`flex-1 p-4 transition-all ${serialMonitorOpen ? 'pb-[400px]' : ''}`}>
           <div className="tactical-map h-full relative">
             <DroneMap
               telemetry={telemetry}
@@ -110,17 +125,31 @@ export const Dashboard = () => {
                 </div>
               </div>
             </div>
+
+            {/* Serial Monitor Status Indicator */}
+            {serialMonitorOpen && (
+              <div className="absolute bottom-4 left-4 tactical-card p-2 rounded flex items-center gap-2">
+                <Terminal size={14} className="text-green-400" />
+                <span className="text-xs font-mono text-green-400">SERIAL CONSOLE ACTIVE</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Mobile overlay */}
+      {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
           className="md:hidden fixed inset-0 bg-black/70 z-0"
           onClick={() => setSidebarOpen(false)}
         />
       )}
+
+      {/* Serial Monitor Component */}
+      <SerialMonitor 
+        isOpen={serialMonitorOpen} 
+        onToggle={() => setSerialMonitorOpen(!serialMonitorOpen)} 
+      />
     </div>
   );
 };
