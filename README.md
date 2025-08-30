@@ -45,27 +45,27 @@ A complete real-time drone telemetry and mission planning system with ESP32 flig
 
 ### 1. Clone Repository
 
+```shell
 git clone https://github.com/yourusername/uav-mission-control.git
 cd uav-mission-control
-
-text
+```
 
 ### 2. Setup Backend Server
 
+```shell
 cd server
 npm install
 npm start
-
-text
+```
 Server runs on `http://localhost:8080`
 
 ### 3. Setup Frontend Dashboard
 
+```shell
 cd dashboard
 npm install
 npm run dev
-
-text
+```
 Dashboard available at `http://localhost:3000`
 
 ### 4. ESP32 Flight Controller Setup
@@ -73,24 +73,24 @@ Dashboard available at `http://localhost:3000`
 #### Hardware Connections
 
 ESP32 Pinout:
+```
 ├── MPU9250 (I2C)
-│ ├── SDA → GPIO 21
-│ ├── SCL → GPIO 22
-│ └── VCC → 3.3V, GND → GND
+│   ├── SDA → GPIO 21
+│   ├── SCL → GPIO 22
+│   └── VCC → 3.3V, GND → GND
 ├── BMP280 (I2C)
-│ ├── SDA → GPIO 32
-│ ├── SCL → GPIO 33
-│ └── VCC → 3.3V, GND → GND
+│   ├── SDA → GPIO 32
+│   ├── SCL → GPIO 33
+│   └── VCC → 3.3V, GND → GND
 ├── RC Inputs (PWM)
-│ ├── Roll → GPIO 34
-│ ├── Pitch → GPIO 35
-│ ├── Throttle → GPIO 4
-│ └── Yaw → GPIO 2
+│   ├── Roll → GPIO 34
+│   ├── Pitch → GPIO 35
+│   ├── Throttle → GPIO 4
+│   └── Yaw → GPIO 2
 ├── ESC Outputs (6x motors)
-│ └── GPIOs: 5, 18, 23, 13, 19, 25
+│   └── GPIOs: 5, 18, 23, 13, 19, 25
 └── Battery Monitor → GPIO 36
-
-text
+```
 
 #### Arduino IDE Setup
 1. Install libraries:
@@ -101,19 +101,19 @@ text
 
 2. Update WiFi credentials in `flight.ino`:
 
+```cpp
 WiFiNetwork wifiNetworks[] = {
-{"YourWiFi_5G", "your_password"},
-{"YourWiFi_2.4G", "your_password"},
-{"Mobile_Hotspot", "hotspot_password"}
+  {"YourWiFi_5G", "your_password"},
+  {"YourWiFi_2.4G", "your_password"},
+  {"Mobile_Hotspot", "hotspot_password"}
 };
-
-text
+```
 
 3. Update server IP:
 
+```cpp
 const char* TELEMETRY_SERVER_URL = "http://192.168.1.100:8080/telemetry";
-
-text
+```
 
 4. Upload to ESP32 and monitor Serial output
 
@@ -138,8 +138,6 @@ uav-mission-control/
 │ └── flight.ino # Complete FC with telemetry
 ├── README.md
 └── .gitignore
-
-text
 
 ## 🎯 Usage
 
@@ -175,26 +173,26 @@ text
 
 ### Server Port
 
+```shell
 PORT=8080 npm start
-
-text
+```
 
 ### WiFi Networks
 Add multiple networks in flight controller:
 
+```cpp
 WiFiNetwork wifiNetworks[] = {
-{"Primary_Network", "password1"},
-{"Backup_Network", "password2"},
-{"Mobile_Hotspot", "password3"}
+  {"Primary_Network", "password1"},
+  {"Backup_Network", "password2"},
+  {"Mobile_Hotspot", "password3"}
 };
-
-text
+```
 
 ### Telemetry Rate
 
+```cpp
 const unsigned long TELEMETRY_INTERVAL = 1000; // milliseconds
-
-text
+```
 
 ## 🐛 Troubleshooting
 
