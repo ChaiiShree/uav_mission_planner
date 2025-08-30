@@ -8,21 +8,27 @@ interface DataCardProps {
   status?: 'operational' | 'warning' | 'critical';
   isUpdating?: boolean;
   classification?: string;
+  size?: 'compact' | 'normal' | 'large';
+  showProgress?: boolean;
+  progressValue?: number;
 }
 
-export const DataCard = ({ 
-  title, 
-  value, 
-  unit, 
-  icon, 
+export const DataCard = ({
+  title,
+  value,
+  unit,
+  icon,
   status = 'operational',
   isUpdating = false,
-  classification = "UNCLASSIFIED"
+  classification,
+  size = 'normal',
+  showProgress = false,
+  progressValue = 0
 }: DataCardProps) => {
   const statusClasses = {
-    operational: 'tactical-card status-operational',
-    warning: 'tactical-card status-warning', 
-    critical: 'tactical-card status-critical'
+    operational: 'data-card status-operational',
+    warning: 'data-card status-warning',
+    critical: 'data-card status-critical'
   };
 
   const statusTextClasses = {
@@ -31,51 +37,46 @@ export const DataCard = ({
     critical: 'status-critical-text'
   };
 
+  const sizeClasses = {
+    compact: 'data-card-compact',
+    normal: 'data-card-normal',
+    large: 'data-card-large'
+  };
+
   return (
-    <div className={`
-      ${statusClasses[status]}
-      ${isUpdating ? 'data-updating' : ''}
-      p-4 rounded-md
-    `}>
-      {/* Classification Header */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-xs font-mono text-gray-500 uppercase tracking-wider">
-          {classification}
+    <div className={`${statusClasses[status]} ${sizeClasses[size]} ${isUpdating ? 'data-updating' : ''}`}>
+      {/* Header */}
+      <div className="data-card-header">
+        <div className="flex items-center gap-2">
+          {icon && <div className="data-card-icon">{icon}</div>}
+          <h3 className="data-card-title">{title}</h3>
         </div>
-        {icon && (
-          <div className={`p-1 ${statusTextClasses[status]}`}>
-            {icon}
+        {classification && (
+          <div className="data-card-classification">{classification}</div>
+        )}
+      </div>
+      
+      {/* Value */}
+      <div className={`data-card-value ${statusTextClasses[status]}`}>
+        <span className="value-main">{value}</span>
+        {unit && <span className="value-unit">{unit}</span>}
+      </div>
+
+      {/* Progress Bar */}
+      {showProgress && (
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div 
+              className={`progress-fill ${status}`}
+              style={{ width: `${Math.min(100, Math.max(0, progressValue))}%` }}
+            />
           </div>
-        )}
-      </div>
-
-      {/* Field Label */}
-      <div className="text-sm font-mono text-gray-400 uppercase tracking-wide mb-1">
-        {title}
-      </div>
-
-      {/* Value Display */}
-      <div className="flex items-baseline gap-1">
-        <span className="tactical-value text-2xl font-bold font-mono">
-          {typeof value === 'number' ? value.toFixed(value % 1 === 0 ? 0 : 6) : value}
-        </span>
-        {unit && (
-          <span className="text-sm font-mono text-gray-500 ml-1">
-            {unit}
-          </span>
-        )}
-      </div>
-
-      {/* Status Indicator */}
-      <div className="mt-2 flex items-center gap-2">
-        <div className={`w-2 h-2 rounded-full status-indicator ${
-          status === 'operational' ? 'status-online' : 
-          status === 'warning' ? 'bg-yellow-500' : 'status-offline'
-        }`} />
-        <span className={`text-xs font-mono uppercase ${statusTextClasses[status]}`}>
-          {status}
-        </span>
-      </div>
+          <div className="progress-labels">
+            <span>0</span>
+            <span>100</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

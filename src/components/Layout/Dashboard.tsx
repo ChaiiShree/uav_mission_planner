@@ -22,7 +22,7 @@ export const Dashboard = () => {
     <div className="h-screen flex bg-gray-900 grid-overlay">
       {/* Tactical Sidebar */}
       <div className={`
-        ${sidebarOpen ? 'w-80' : 'w-0'} 
+        ${sidebarOpen ? 'w-85' : 'w-0'} 
         transition-all duration-300 overflow-hidden z-10
         md:relative absolute h-full
       `}>
@@ -108,29 +108,42 @@ export const Dashboard = () => {
               onRemoveWaypoint={removeWaypoint}
             />
             
-            {/* Tactical Overlay */}
-            <div className="absolute top-4 right-4 tactical-card p-3 rounded max-w-xs">
-              <div className="military-heading text-xs mb-2 flex items-center gap-2">
-                <MapPin size={12} />
-                TACTICAL MAP
+            {/* Enhanced Tactical Overlay */}
+            <div className="absolute top-4 right-4 tactical-overlay-card">
+              <div className="tactical-overlay-header">
+                <MapPin size={16} className="text-blue-400" />
+                <span className="tactical-overlay-title">MAP CONTROLS</span>
               </div>
-              <div className="text-xs text-gray-400 font-mono space-y-1">
-                <div>• DOUBLE-CLICK: ADD WAYPOINT</div>
-                <div>• SCROLL: ZOOM IN/OUT</div>
-                <div>• DRAG: PAN VIEW</div>
-              </div>
-              <div className="mt-2 pt-2 border-t border-gray-700">
-                <div className="text-xs text-gray-500 font-mono">
-                  CLASSIFICATION: UNCLASSIFIED
+              
+              <div className="tactical-overlay-content">
+                <div className="tactical-overlay-section">
+                  <div className="tactical-overlay-item">
+                    <span className="tactical-overlay-key">DOUBLE-CLICK</span>
+                    <span className="tactical-overlay-desc">ADD WAYPOINT</span>
+                  </div>
+                  <div className="tactical-overlay-item">
+                    <span className="tactical-overlay-key">SCROLL</span>
+                    <span className="tactical-overlay-desc">ZOOM IN/OUT</span>
+                  </div>
+                  <div className="tactical-overlay-item">
+                    <span className="tactical-overlay-key">DRAG</span>
+                    <span className="tactical-overlay-desc">PAN VIEW</span>
+                  </div>
+                </div>
+                
+                <div className="tactical-overlay-footer">
+                  <div className="tactical-overlay-classification">
+                    CLASSIFICATION: UNCLASSIFIED
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Serial Monitor Status Indicator */}
             {serialMonitorOpen && (
-              <div className="absolute bottom-4 left-4 tactical-card p-2 rounded flex items-center gap-2">
-                <Terminal size={14} className="text-green-400" />
-                <span className="text-xs font-mono text-green-400">SERIAL CONSOLE ACTIVE</span>
+              <div className="absolute bottom-4 left-4 tactical-card p-3 rounded flex items-center gap-2">
+                <Terminal size={16} className="text-green-400" />
+                <span className="text-sm font-mono text-green-400 font-semibold">SERIAL CONSOLE ACTIVE</span>
               </div>
             )}
           </div>
