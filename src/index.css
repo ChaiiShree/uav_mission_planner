@@ -396,133 +396,67 @@ body {
 }
 
 /* Enhanced Tactical Overlay Styling */
-.tactical-overlay-card {
-  background: linear-gradient(135deg, rgba(15, 20, 25, 0.98) 0%, rgba(26, 31, 46, 0.98) 100%);
-  border: 1px solid #4a5568;
-  border-left: 3px solid #00ff88;
-  border-radius: 8px;
-  backdrop-filter: blur(15px);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  min-width: 300px;
-  max-width: 320px;
+/* Tactical Map Overlay - Right Side Panel Style */
+.tactical-map-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+  border: 1px solid #3fb950;
+  border-radius: 6px;
+  min-width: 280px;
+  max-width: 300px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
   overflow: hidden;
 }
 
-.tactical-overlay-header {
+.tactical-map-header {
+  background: linear-gradient(135deg, #3fb950 0%, #2d8f3f 100%);
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid #4a5568;
-  background: linear-gradient(135deg, rgba(26, 32, 44, 0.8) 0%, rgba(45, 55, 72, 0.8) 100%);
+  gap: 0.5rem;
 }
 
-.tactical-overlay-title {
-  font-family: 'Orbitron', monospace;
+.tactical-map-title {
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #00ff88;
+  color: #000;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+  letter-spacing: 1px;
 }
 
-.tactical-overlay-content {
-  padding: 1.25rem;
+.tactical-map-content {
+  padding: 1rem;
 }
 
-.tactical-overlay-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 1.25rem;
-}
-
-.tactical-overlay-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.875rem 0;
-  border-bottom: 1px solid rgba(74, 85, 104, 0.2);
-  transition: all 0.2s ease;
-}
-
-.tactical-overlay-item:last-child {
-  border-bottom: none;
-}
-
-.tactical-overlay-item:hover {
-  background: rgba(0, 255, 136, 0.05);
-  margin: 0 -0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  border-radius: 4px;
-}
-
-.tactical-overlay-key {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ffd700;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 183, 0, 0.1) 100%);
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  min-width: fit-content;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
-  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);
-}
-
-.tactical-overlay-desc {
+.tactical-map-controls {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   color: #e1e8f0;
-  font-weight: 500;
-  text-align: right;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
-.tactical-overlay-footer {
-  padding-top: 1rem;
-  border-top: 1px solid #4a5568;
+.tactical-map-controls div {
+  margin-bottom: 0.25rem;
 }
 
-.tactical-overlay-classification {
+.tactical-map-classification {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.625rem;
   color: #718096;
-  font-weight: 600;
   text-align: center;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 32, 44, 0.6) 100%);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem;
+  border-radius: 4px;
   border: 1px solid rgba(113, 128, 150, 0.2);
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
 }
 
-/* Hover effect for the overlay */
-.tactical-overlay-card:hover {
-  border-left-color: #00cc6a;
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.8),
-    0 0 30px rgba(0, 255, 136, 0.2);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
-}
-
-.tactical-overlay-card:hover .tactical-overlay-title {
-  color: #00cc6a;
-  text-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
-}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -551,4 +485,6 @@ body {
     min-width: 250px;
     max-width: 280px;
   }
+
+  
 }

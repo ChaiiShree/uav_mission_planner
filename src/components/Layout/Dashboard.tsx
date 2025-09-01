@@ -22,7 +22,7 @@ export const Dashboard = () => {
     <div className="h-screen flex bg-gray-900 grid-overlay">
       {/* Tactical Sidebar */}
       <div className={`
-        ${sidebarOpen ? 'w-85' : 'w-0'} 
+        ${sidebarOpen ? 'w-96' : 'w-0'} 
         transition-all duration-300 overflow-hidden z-10
         md:relative absolute h-full
       `}>
@@ -108,33 +108,20 @@ export const Dashboard = () => {
               onRemoveWaypoint={removeWaypoint}
             />
             
-            {/* Enhanced Tactical Overlay */}
-            <div className="absolute top-4 right-4 tactical-overlay-card">
-              <div className="tactical-overlay-header">
-                <MapPin size={16} className="text-blue-400" />
-                <span className="tactical-overlay-title">MAP CONTROLS</span>
+            {/* Tactical Map Control Panel */}
+            <div className="tactical-map-overlay">
+              <div className="tactical-map-header">
+                <MapPin size={16} className="text-black" />
+                <span className="tactical-map-title">TACTICAL MAP</span>
               </div>
-              
-              <div className="tactical-overlay-content">
-                <div className="tactical-overlay-section">
-                  <div className="tactical-overlay-item">
-                    <span className="tactical-overlay-key">DOUBLE-CLICK</span>
-                    <span className="tactical-overlay-desc">ADD WAYPOINT</span>
-                  </div>
-                  <div className="tactical-overlay-item">
-                    <span className="tactical-overlay-key">SCROLL</span>
-                    <span className="tactical-overlay-desc">ZOOM IN/OUT</span>
-                  </div>
-                  <div className="tactical-overlay-item">
-                    <span className="tactical-overlay-key">DRAG</span>
-                    <span className="tactical-overlay-desc">PAN VIEW</span>
-                  </div>
+              <div className="tactical-map-content">
+                <div className="tactical-map-controls">
+                  <div>• DOUBLE-CLICK: ADD WAYPOINT</div>
+                  <div>• SCROLL: ZOOM IN/OUT</div>
+                  <div>• DRAG: PAN VIEW</div>
                 </div>
-                
-                <div className="tactical-overlay-footer">
-                  <div className="tactical-overlay-classification">
-                    CLASSIFICATION: UNCLASSIFIED
-                  </div>
+                <div className="tactical-map-classification">
+                  CLASSIFICATION: UNCLASSIFIED
                 </div>
               </div>
             </div>
